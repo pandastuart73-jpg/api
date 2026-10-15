@@ -1,0 +1,13 @@
+CREATE VIEW viewA AS SELECT * FROM Employee WHERE Ename LIKE 'S%';
+CREATE VIEW viewB AS SELECT * FROM Employee WHERE Dno <> 20;
+CREATE VIEW viewC AS SELECT * FROM Employee WHERE Salary BETWEEN 40000 AND 60000;
+CREATE VIEW viewD AS SELECT SUM(Salary) AS Total_Manager_Salary, COUNT(*) AS Number_Of_Managers, MAX(Salary) AS Highest_Paid_Manager FROM Employee WHERE Job = 'Manager';
+CREATE VIEW viewE AS SELECT Salary, Dno FROM Employee ORDER BY Empno DESC LIMIT 2;
+ALTER TABLE Employee MODIFY Ename VARCHAR(40);
+ALTER TABLE Employee ADD Residence VARCHAR(50);
+INSERT INTO Employee (Empno, Ename, Job) VALUES ('E009', 'Jane', 'Teacher');
+UPDATE EmployeeSET Job = 'Engineer', Salary = Salary * 1.10 WHERE Empno = 'E004';
+DELETE FROM Employee ORDER BY Empno DESC LIMIT 1;
+CREATE TABLE Department (Dno INT PRIMARY KEY,Dname VARCHAR(50),Location VARCHAR(50));
+INSERT INTO Department (Dno, Dname, Location)VALUES(10, 'Human Resource', 'Kampala'),(20, 'Finance', 'Mukono'),(30, 'Information Technology', 'Wakiso');
+ALTER TABLE Employee ADD CONSTRAINT fk_employee_department FOREIGN KEY (Dno) REFERENCES Department(Dno);
